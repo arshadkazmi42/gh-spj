@@ -1,14 +1,31 @@
+import sys
 import requests
 import time
+
 from random import randrange
 
-USER = 'arshadkazmi42'
+
 GITHUB_SEARCH_API = 'https://api.github.com/search/code?q='
 START_PAGE_NUMBER = 1
-SEARCH_QUERY = f'user%3A{USER}+filename%3Apackage.json+NOT+example+NOT+boilerplate&type=code&page='
+SEARCH_QUERY = 'user%3A{}+filename%3Apackage.json+NOT+example+NOT+boilerplate&type=code&page='
 GH_RESULTS_PER_PAGE = 30
 
-URL = f'{GITHUB_SEARCH_API}{SEARCH_QUERY}'
+
+
+# HELPER FUNCTIONS
+
+def _get_url(user):
+    searchQuery = SEARCH_QUERY.format(user)
+    return f'{GITHUB_SEARCH_API}{searchQuery}'
+
+def _get_github_username():
+    args = sys.argv
+
+    if len(args) < 2:
+        print('Missing username!')
+        exit()
+
+    return args[1]
 
 
 def _get_url_result(url):
@@ -21,9 +38,9 @@ def _get_url_result(url):
         
     return response.json()
 
-def _get_total_pages():
+def _get_total_pages(url):
 
-    result = _get_url_result(f'{URL}{START_PAGE_NUMBER}')
+    result = _get_url_result(f'{url}{START_PAGE_NUMBER}')
 
     total_count = 1
     if 'total_count' in result:
@@ -37,12 +54,19 @@ def _get_total_pages():
     # So it needs to do 1 iteration
     return 2
 
+
+# MAIN CODE
+
+user = _get_github_username()
+url = _get_url(user)
+
 total_urls = 0
-total_pages = _get_total_pages()
+total_pages = _get_total_pages(url)
+
 for page_number in range(START_PAGE_NUMBER, total_pages):
     
-    print(page_number)
-    result = _get_url_result(f'{URL}{page_number}')
+#    print(page_number)
+    result = _get_url_result(f'{url}{page_number}')
 
     items = []
     if 'items' in result:
@@ -60,5 +84,4 @@ for page_number in range(START_PAGE_NUMBER, total_pages):
                 print(html_url)
     
     rand = randrange(20)
-    print(f'sleeping {rand}')
     time.sleep(rand)

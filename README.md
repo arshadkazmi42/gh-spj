@@ -17,7 +17,6 @@ $ python scrap.py {Github Username}
 
 ```
 $ python scrap.py arshadkazmi42
-
 ```
 
 ```

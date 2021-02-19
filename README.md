@@ -7,14 +7,19 @@ Github - package.json and package-lock.json scrapper
 $ pip install -r requirements.txt
 ```
 
-## Setup
-
-1. Install all dependencies
-2. Open `scrap.py` and change `USER` to username or organization name from where scrapper needs to be scrap the files
-
-
 ## Usage
 
 ```
-$ python scrap.py
+$ python scrap.py {Github Username}
+```
+
+## Example
+
+```
+$ python scrap.py arshadkazmi42
+
+```
+
+```
+$ python scrap.py google
 ```

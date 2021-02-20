@@ -78,7 +78,7 @@ for page_number in range(START_PAGE_NUMBER, total_pages):
                 html_url = html_url.replace('https://github.com', 'https://raw.githubusercontent.com')
                 html_url = html_url.replace('/blob/', '/')
 
-                if html_url:
+                if html_url and 'node_modules' not in html_url:
                     total_urls = total_urls + 1
                     print(html_url)
     

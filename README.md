@@ -10,15 +10,15 @@ $ pip install -r requirements.txt
 ## Usage
 
 ```
-$ python scrap.py {Github Username}
+$ python scrap-package-json.py {Github Username}
 ```
 
 ## Example
 
 ```
-$ python scrap.py arshadkazmi42
+$ python scrap-package-json.py arshadkazmi42
 ```
 
 ```
-$ python scrap.py google
+$ python scrap-package-json.py google
 ```

@@ -68,20 +68,19 @@ for page_number in range(START_PAGE_NUMBER, total_pages):
 #    print(page_number)
     result = _get_url_result(f'{url}{page_number}')
 
-    items = []
     if 'items' in result:
         items = result['items']
 
-    for item in items:
+        for item in items:
 
-        if 'html_url' in item:
-            html_url = item['html_url']
-            html_url = html_url.replace('https://github.com', 'https://raw.githubusercontent.com')
-            html_url = html_url.replace('/blob/', '/')
+            if 'html_url' in item:
+                html_url = item['html_url']
+                html_url = html_url.replace('https://github.com', 'https://raw.githubusercontent.com')
+                html_url = html_url.replace('/blob/', '/')
 
-            if html_url:
-                total_urls = total_urls + 1
-                print(html_url)
+                if html_url:
+                    total_urls = total_urls + 1
+                    print(html_url)
     
     rand = randrange(20)
     time.sleep(rand)

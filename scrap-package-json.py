@@ -47,7 +47,7 @@ def _get_total_pages(url):
         total_count = result['total_count']
 
     if total_count > GH_RESULTS_PER_PAGE:
-        return int(total_count / GH_RESULTS_PER_PAGE)
+        return int(total_count / GH_RESULTS_PER_PAGE) + 1
 
     # If total results are less than the total results in one page
     # Return 2, since page_numbers starts with 1.

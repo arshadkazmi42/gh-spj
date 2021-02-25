@@ -10,7 +10,7 @@ $ pip install -r requirements.txt
 ## Usage
 
 ```
-$ python scrap-package-json.py {Github Username}
+$ python scrap-package-json.py {Github Username} {Github Token (Optional)}
 ```
 
 ## Example
